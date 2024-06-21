@@ -11,7 +11,7 @@ class MyApp2 extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '実践演習0620', home: MyHome(),
+      title: '実践演習0620', home: const MyHome(),
       theme: ThemeData(
 
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
@@ -35,7 +35,7 @@ class _MyHomeState extends State<MyHome>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('デモアプリ')),
+      appBar: AppBar(title: const Text('デモアプリ')),
       floatingActionButton: FloatingActionButton(
         onPressed: ()=>{
           setState((){
@@ -47,19 +47,12 @@ class _MyHomeState extends State<MyHome>{
       
       body: Column(
         children: [
-          Text("$count",style: TextStyle(fontSize: 80),),
+          Text("$count",style: const TextStyle(fontSize: 80),),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              BinDigit(value:count, digit: 7),
-              BinDigit(value:count, digit: 6),
-              BinDigit(value:count, digit: 5),
-              BinDigit(value:count, digit: 4),
-              BinDigit(value:count, digit: 3),
-              BinDigit(value:count, digit: 2),
-              BinDigit(value:count, digit: 1),
-              BinDigit(value:count, digit: 0),
-            ],
+            children: ([9,8,7,6,5,4,3,2,1,0].map((i){
+              return BinDigit(value: count, digit: i);
+            })).toList()
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -91,10 +84,9 @@ class BinDigit extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return Text((value & (1<< digit) != 0)?'1':'0',style: TextStyle(fontSize: 30));
+    return Text((value & (1<< digit) != 0)?'1':'0',style: const TextStyle(fontSize: 30));
   } 
 }
-
 
 
 
